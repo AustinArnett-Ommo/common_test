@@ -43,3 +43,14 @@ jobs:
         run: |
           cd build
           cmake --build . --config Release
+          
+      - name: Zip
+        shell: bash
+        run: |
+          cd install/json
+          zip -r packages.zip include
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: include-dir
+          path: install/json/packages.zip

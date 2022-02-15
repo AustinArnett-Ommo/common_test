@@ -1,5 +1,7 @@
 include_guard()
 
+project(TEST_COMMON)
+
 set(JSON_FC_TARGET fc_json)
 set(JSON_EXT_TARGET ext_json)
 set(_JSON_REPO "https://github.com/nlohmann/json.git")
@@ -8,6 +10,8 @@ set(_JSON_TAG "v${_JSON_VERSION}")
 set(_JSON_LIB_NAME "nlohmann_json")
 set(_JSON_CONFIG_DIR "lib/cmake/nlohmann_json")
 set(_DEFAULT_REQUIRED_CONFIG "Release")
+
+include(FetchContent)
 
 FetchContent_Declare(${JSON_FC_TARGET}
   GIT_REPOSITORY ${_JSON_REPO}

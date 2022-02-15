@@ -47,10 +47,10 @@ jobs:
       - name: Zip
         shell: bash
         run: |
-          cd install/json
+          cd install/nlohmann_json
           zip -r packages.zip include
           
       - uses: actions/upload-artifact@v2
         with:
           name: include-dir
-          path: install/json/packages.zip
+          path: install/nlohmann_json/packages.zip

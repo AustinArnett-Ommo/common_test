@@ -64,7 +64,7 @@ jobs:
         
       # Replace wextra
       - name: wextra removal
-        if: runner.os == 'windows-latest'
+        if: runner.os == 'Windows'
         shell: bash
         run: sed -i 's/set (CMAKE_C_FLAGS "-Wall -Wextra -pedantic ${CMAKE_C_FLAGS}")/#set (CMAKE_C_FLAGS "-Wall -Wextra -pedantic ${CMAKE_C_FLAGS}")/' test.txt
         

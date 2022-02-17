@@ -29,20 +29,31 @@ jobs:
       - name: Install cmake
         run: choco install cmake
         
-      # Retrieve cache
+      # Retrieve install cache
       - uses: actions/cache@v2
-        id: cache
+        id: cache-install
         with:
           path: ./
-          key: ${{runner.os}}-${{hashFiles('install')}}
+          key: ${{runner.os}}-install
+          
+      # Retrieve build cache
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: ./
+          key: ${{runner.os}}-build
 
-      # Create install and build dirs if cache miss
-      - name: Create dirs
-        if: steps.cache.outputs.cache-hit != 'true'
+      # Create install dir if cache miss
+      - name: Create install dir
+        if: steps.cache-install.outputs.cache-hit != 'true'
         shell: bash
-        run: |
-          mkdir install
-          mkdir build
+        run: mkdir install
+        
+      # Create build dir if cache miss
+      - name: Create build dir
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        shell: bash
+        run: mkdir build
         
       # Configure
       - name: Configure
@@ -57,13 +68,20 @@ jobs:
           cd build
           cmake --build . --config Release
       
-      # Cache the install and build dirs
+      # Cache the install dir
       - uses: actions/cache@v2
         with:
           path: |
             install
             build
-          key: ${{runner.os}}-${{hashFiles('install')}}
+          key: ${{runner.os}}-install
+          
+      # Cache the build dir
+      - uses: actions/cache@v2
+        with:
+          path: |
+            build
+          key: ${{runner.os}}-build
           
       - uses: papeloto/action-zip@v1
         with:

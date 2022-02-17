@@ -31,7 +31,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install cmake
-        if: runner.os == "Windows"
+        if: runner.os == 'Windows'
         run: choco install cmake
         
       # Retrieve install cache

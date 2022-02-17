@@ -1,7 +1,7 @@
 # This is a basic workflow to help you get started with Actions
 
 name: Build
- 
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -33,14 +33,14 @@ jobs:
       - uses: actions/cache@v2
         id: cache-install
         with:
-          path: ./
+          path: ./install
           key: ${{runner.os}}-install
           
       # Retrieve build cache
       - uses: actions/cache@v2
         id: cache-build
         with:
-          path: ./
+          path: ./build
           key: ${{runner.os}}-build
 
       # Create install dir if cache miss

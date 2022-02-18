@@ -22,7 +22,8 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest]
+        #os: [windows-latest, ubuntu-latest, macos-latest]
       
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -30,9 +31,9 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Install cmake
-        if: runner.os == 'Windows'
-        run: choco install cmake
+      #- name: Install cmake
+      #  if: runner.os == 'Windows'
+      #  run: choco install cmake
         
       # Retrieve install cache
       - uses: actions/cache@v2

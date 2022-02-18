@@ -69,10 +69,12 @@ jobs:
       - name: Create conda environment
         shell: bash -l {0}
         run: conda create -n ommo_build_common mkl-devel openssl
-      - name: List conda environment
-        shell: bash -l {0}
-        run: conda list
         
+      - name: Activate conda environment and list
+        shell: bash -l {0}
+        run: |
+          conda activate ommo_build_common
+          conda list
         
       # Configure
       - name: Configure
